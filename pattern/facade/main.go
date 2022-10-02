@@ -1,60 +1,59 @@
 package facade
 
-import (
-	"fmt"
-	"patterns/facade/marketplace"
-	"time"
-)
+import "patterns/facade/pkg"
 
 var (
-	orderId   = 0
-	productId = 0
-	addressId = 0
+	bank = pkg.Bank{
+		Name:  "Закрытие",
+		Cards: []pkg.Card{},
+	}
+
+	card1 = pkg.Card{
+		Name:    "CRD-1",
+		Balance: 200,
+		Bank:    &bank,
+	}
+
+	card2 = pkg.Card{
+		Name:    "CRD-2",
+		Balance: 50,
+		Bank:    &bank,
+	}
+
+	buyer = pkg.User{
+		Name: "Buyer-1",
+		Card: &card1,
+	}
+
+	buyer2 = pkg.User{
+		Name: "Buyer-2",
+		Card: &card2,
+	}
+
+	prod = pkg.Product{
+		Name:  "laptop",
+		Price: 125,
+	}
+
+	shop = pkg.Shop{
+		Name:     "Re:Store",
+		Products: []pkg.Product{prod},
+	}
 )
 
-type orderFacade struct {
-	marketplace.Account
-	marketplace.Payment
-	marketplace.Tax
-	marketplace.Product
-	marketplace.Packing
-	marketplace.Warehouse
-	marketplace.Delivery
-}
-
-func newOrderFacade(orderId, totalPrice, productId, addressId int, productName string) *orderFacade {
-	acc := marketplace.NewAccount("name", 1901, 0)
-	pay := marketplace.NewPayment(orderId, totalPrice)
-	tx := marketplace.NewTax(orderId, int(float64(totalPrice)*0.15))
-	prod := marketplace.NewProduct(productId, productName)
-	pack := marketplace.NewPacking(orderId, productId, 1)
-	wrh := marketplace.NewWarehouse(addressId, pack.Id)
-	del := marketplace.NewDelivery(orderId, "Address street", time.Now().Add(time.Hour*5))
-
-	return &orderFacade{
-		Account:   *acc,
-		Payment:   *pay,
-		Tax:       *tx,
-		Product:   *prod,
-		Packing:   *pack,
-		Warehouse: *wrh,
-		Delivery:  *del,
-	}
-}
-
-func (f *orderFacade) makeOrder() {
-	orderId++
-	productId++
-	addressId++
-	f.Authorize("name", 1901)
-	f.Payment.ChangeStatus()
-	f.Tax.MarkAsPayed()
-	f.Warehouse.ChangeStatus()
-	f.Delivery.ChangeStatus()
-}
-
 func Facade() {
-	order := newOrderFacade(orderId, 500, productId, addressId, "phone case")
-	order.makeOrder()
-	fmt.Println()
+	println("[Банк] Выпуск карт")
+	bank.Cards = append(bank.Cards, card1, card2)
+
+	println("[" + buyer.Name + "]")
+	if err := shop.Sell(buyer, prod.Name); err != nil {
+		println(err.Error())
+	}
+
+	println()
+
+	println("[" + buyer.Name + "]")
+	if err := shop.Sell(buyer2, prod.Name); err != nil {
+		println(err.Error())
+	}
 }

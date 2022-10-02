@@ -4,7 +4,50 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18c8dfb1-9756-4a07-8cb1-437f4b575598" name="Changes" comment="" />
+    <list default="true" id="18c8dfb1-9756-4a07-8cb1-437f4b575598" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/develop/dev11/cmd/app/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/configs/development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/delivery/http/calendar.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/delivery/http/dto/create-event.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/delivery/http/dto/update-event.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/delivery/http/handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/domain/event.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/server/server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/service/calendar.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/internal/service/service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/pkg/logger/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/pkg/storage/storage.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/develop/dev11/pkg/uuid/uuid.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/builder/pkg/address.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/builder/pkg/builder.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/builder/pkg/customer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/builder/pkg/order.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/builder/pkg/product.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/chain-of-resp/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/command/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/facade/pkg/product.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/factory/pkg/plain.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/factory/pkg/ship.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/factory/pkg/transport.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/factory/pkg/truck.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pattern/visitor/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/develop/dev01/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/develop/dev01/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/develop/dev02/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/develop/dev02/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/builder/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/pattern/builder/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/facade/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/pattern/facade/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/facade/marketplace/account.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/facade/marketplace/delivery.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/facade/marketplace/packing.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/facade/marketplace/payment.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/facade/marketplace/product.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/facade/marketplace/tax.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/facade/marketplace/warehouse.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/factory/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/pattern/factory/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/pattern/main.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,12 +86,17 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/home/magomed/Development/Golang/Wildberries/l2",
-    "nodejs_package_manager_path": "npm"
+    "last_opened_file_path": "/home/magomed/Development/Golang/Wildberries/l2/pattern/chain-of-resp",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pattern/chain-of-resp" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/develop/dev11/internal/domain" />
       <recent name="$PROJECT_DIR$/tasks/02-Unpacking" />
       <recent name="$PROJECT_DIR$/patterns/facade/marketplace" />
     </key>
