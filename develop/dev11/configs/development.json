@@ -1,0 +1,19 @@
+{
+  "http": {
+    "port": "5011",
+    "timeouts": {
+      "read": 10,
+      "write": 10
+    },
+    "maxHeaderMegabytes": 2
+  },
+  "limiter": {
+    "rps": 10,
+    "burst": 20,
+    "ttl": 10
+  },
+  "cache": {
+    "ttl": 30,
+    "clean": 60
+  },
+}
