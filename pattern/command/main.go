@@ -1,7 +1,16 @@
 package command
 
-import "fmt"
+import "patterns/command/pkg"
 
 func Command() {
-	fmt.Println("Implement me!")
+	scooter := &pkg.Scooter{}
+
+	takeCommand := pkg.NewTakeCommand(scooter)
+	putCommand := pkg.NewPutCommand(scooter)
+
+	takeScooterBtn := pkg.NewButton(takeCommand)
+	takeScooterBtn.Press()
+
+	putScooterBtn := pkg.NewButton(putCommand)
+	putScooterBtn.Press()
 }

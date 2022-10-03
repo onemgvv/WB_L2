@@ -1,7 +1,17 @@
 package visitor
 
-import "fmt"
+import (
+	"fmt"
+	"patterns/visitor/pkg"
+)
 
 func Visitor() {
-	fmt.Println("Implement me!")
+	xml := pkg.NewXmlData("<xml></xml>")
+	json := pkg.NewJsonData("{\"key\": \"value\"}")
+
+	dataLoader := pkg.NewLoadData()
+
+	xml.Accept(dataLoader)
+	fmt.Println()
+	json.Accept(dataLoader)
 }
