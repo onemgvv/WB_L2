@@ -1,9 +1,12 @@
 package http
 
 import (
-	"github.com/onemgvv/WB_L2/develop/dev11/internal/config"
-	"github.com/onemgvv/WB_L2/develop/dev11/internal/service"
+	// "fmt"
 	"net/http"
+
+	"github.com/onemgvv/WB_L2/develop/dev11/internal/config"
+	"github.com/onemgvv/WB_L2/develop/dev11/internal/delivery/http/middleware"
+	"github.com/onemgvv/WB_L2/develop/dev11/internal/service"
 )
 
 type Handler struct {
@@ -15,14 +18,23 @@ func NewHandler(cfg *config.Config, service *service.Service) *Handler {
 	return &Handler{cfg, service}
 }
 
-func (h *Handler) Init() *http.ServeMux {
+func (h *Handler) Init() *http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/api/create_event", h.CreateEvent)
-	mux.HandleFunc("/api/update_event", h.UpdateEvent)
-	mux.HandleFunc("/api/delete_event", h.DeleteEvent)
-	mux.HandleFunc("/api/events_for_day", h.DayEvents)
-	mux.HandleFunc("/api/events_for_week", h.WeekEvents)
-	mux.HandleFunc("/api/events_for_month", h.MonthEvents)
 
-	return mux
+	mux.HandleFunc("/api/create_event",
+		middleware.CheckMethod(http.HandlerFunc(h.CreateEvent), http.MethodPost))
+	mux.HandleFunc("/api/update_event",
+		middleware.CheckMethod(http.HandlerFunc(h.UpdateEvent), http.MethodPost))
+	mux.HandleFunc("/api/delete_event",
+		middleware.CheckMethod(http.HandlerFunc(h.DeleteEvent), http.MethodPost))
+	mux.HandleFunc("/api/events_for_day",
+		middleware.CheckMethod(http.HandlerFunc(h.DayEvents), http.MethodGet))
+	mux.HandleFunc("/api/events_for_week",
+		middleware.CheckMethod(http.HandlerFunc(h.WeekEvents), http.MethodGet))
+	mux.HandleFunc("/api/events_for_month",
+		middleware.CheckMethod(http.HandlerFunc(h.MonthEvents), http.MethodGet))
+
+	handler := middleware.Logging(mux)
+
+	return &handler
 }

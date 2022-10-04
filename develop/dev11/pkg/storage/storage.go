@@ -2,8 +2,9 @@ package storage
 
 import (
 	"errors"
-	"github.com/onemgvv/WB_L2/develop/dev11/internal/domain"
 	"sync"
+
+	"github.com/onemgvv/WB_L2/develop/dev11/internal/domain"
 )
 
 type Data map[string]*domain.Event
@@ -11,6 +12,10 @@ type Data map[string]*domain.Event
 type Storage struct {
 	sync.RWMutex
 	Data
+}
+
+func NewStorage() *Storage {
+	return &Storage{Data: Data{}}
 }
 
 func (s *Storage) Set(id string, data domain.Event) {

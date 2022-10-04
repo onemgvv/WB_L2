@@ -2,19 +2,20 @@ package server
 
 import (
 	"context"
-	"github.com/onemgvv/WB_L2/develop/dev11/internal/config"
 	"net/http"
+
+	"github.com/onemgvv/WB_L2/develop/dev11/internal/config"
 )
 
 type Server struct {
 	httpServer *http.Server
 }
 
-func NewServer(cfg *config.Config, handler http.Handler) *Server {
+func NewServer(cfg *config.Config, handler *http.Handler) *Server {
 	return &Server{
 		httpServer: &http.Server{
 			Addr:           ":" + cfg.HTTP.Port,
-			Handler:        handler,
+			Handler:        *handler,
 			ReadTimeout:    cfg.HTTP.Timeouts.Read,
 			WriteTimeout:   cfg.HTTP.Timeouts.Write,
 			MaxHeaderBytes: cfg.HTTP.MaxHeaderMegabytes,

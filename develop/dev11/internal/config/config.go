@@ -46,8 +46,8 @@ type (
 	}
 )
 
-func (c *Config) Init(path string) error {
-	cfg := setupDefault()
+func (cfg *Config) Init(path string) error {
+	*cfg = setupDefault()
 
 	jsonFile, err := os.ReadFile(path)
 	if err != nil {
@@ -58,11 +58,11 @@ func (c *Config) Init(path string) error {
 		return err
 	}
 
-	c.Limiter.TTL *= time.Minute
-	c.HTTP.Timeouts.Read *= time.Second
-	c.HTTP.Timeouts.Write *= time.Second
-	c.Cache.TTL *= time.Minute
-	c.Cache.Clean *= time.Minute
+	cfg.Limiter.TTL *= time.Minute
+	cfg.HTTP.Timeouts.Read *= time.Second
+	cfg.HTTP.Timeouts.Write *= time.Second
+	cfg.Cache.TTL *= time.Minute
+	cfg.Cache.Clean *= time.Minute
 
 	return nil
 }

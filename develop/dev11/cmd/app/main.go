@@ -3,17 +3,18 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/onemgvv/WB_L2/develop/dev11/internal/config"
-	delivery "github.com/onemgvv/WB_L2/develop/dev11/internal/delivery/http"
-	"github.com/onemgvv/WB_L2/develop/dev11/internal/server"
-	"github.com/onemgvv/WB_L2/develop/dev11/internal/service"
-	"github.com/onemgvv/WB_L2/develop/dev11/pkg/storage"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/onemgvv/WB_L2/develop/dev11/internal/config"
+	delivery "github.com/onemgvv/WB_L2/develop/dev11/internal/delivery/http"
+	"github.com/onemgvv/WB_L2/develop/dev11/internal/server"
+	"github.com/onemgvv/WB_L2/develop/dev11/internal/service"
+	"github.com/onemgvv/WB_L2/develop/dev11/pkg/storage"
 )
 
 const configPath = "configs/development.json"
@@ -26,10 +27,10 @@ func main() {
 	}
 
 	// Empty storage init
-	store := storage.Storage{}
+	store := storage.NewStorage()
 
 	// HTTP Server init
-	services := service.NewService(service.Deps{Storage: &store})
+	services := service.NewService(service.Deps{Storage: store})
 	handler := delivery.NewHandler(&c, services)
 	app := server.NewServer(&c, handler.Init())
 
@@ -39,7 +40,7 @@ func main() {
 			log.Fatalf("[SERVER START] || [FAILED]: %s", err.Error())
 		}
 	}()
-	log.Printf("Application started: \n[PORT]: %s\n", c.HTTP.Port)
+	log.Printf("Application started\n[PORT]: %s\n", c.HTTP.Port)
 
 	// Graceful shutdown
 
