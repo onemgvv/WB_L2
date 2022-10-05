@@ -1,9 +1,12 @@
 # Wildberries Golang Trainee L2
-___
+
+---
 
 - develop
 - - NTP
-- - Sort
+- - Unpack
+- - ...
+- - Work with OS
 - - ...
 - - HTTP Server (Calendar)
 - listing

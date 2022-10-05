@@ -2,15 +2,13 @@ package main
 
 import (
 	"fmt"
-	"log"
+
+	"github.com/onemgvv/WB_L2/develop/dev01/pkg"
 )
 
 func main() {
 	str := "a4bc2d5e"
-	res, err := Unpack(str)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
+	res := pkg.Unpack(str)
 
 	fmt.Println(res)
 }

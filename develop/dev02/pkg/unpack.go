@@ -1,21 +1,23 @@
-package main
+package pkg
 
 import (
-	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 )
 
-func Unpack(str string) (result string, err error) {
+func Unpack(str string) (result string){
+	// var ekr bool
 	if str == "" {
-		return "", nil
+		return ""
 	}
 
-	if _, err = strconv.Atoi(str); err == nil {
-		return "", errors.New("некорректная строка")
+	if _, err := strconv.Atoi(str); err == nil {
+		return "некорректная строка"
 	}
 
 	symbs := []rune(str)
+	fmt.Println(len(symbs))
 	last := symbs[0]
 
 	// проходим в цикле по массиву
