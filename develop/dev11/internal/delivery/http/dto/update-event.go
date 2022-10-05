@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"log"
+	"errors"
 	"strconv"
 	"time"
 
@@ -16,20 +16,18 @@ type UpdateEventDTO struct {
 }
 
 func (u *UpdateEventDTO) ToModel() *domain.Event {
-	return domain.NewEvent(u.Title, u.Description, u.UserId)
+	return domain.NewEvent(u.Title, u.Description, u.Date, u.UserId)
 }
 
-func ParseUpdateEvDto(title, userId, description, date string) *UpdateEventDTO {
+func ParseUpdateEvDto(title, userId, description, date string) (*UpdateEventDTO, error) {
 	uId, err := strconv.Atoi(userId)
 	if err != nil {
-		log.Printf("%s.\n", err.Error())
-		return nil
+		return nil, errors.New("Id is not valid")
 	}
 
-	cTime, err := time.Parse("2006-01-02", date)
-	if err != nil {
-		log.Printf("%s.\n", err.Error())
-		return nil
+	cTime, err := time.Parse(LayoutISO, date)
+	if date != "" && err != nil {
+		return nil, errors.New("Date is not valid")
 	}
 	
 	return &UpdateEventDTO{
@@ -37,5 +35,5 @@ func ParseUpdateEvDto(title, userId, description, date string) *UpdateEventDTO {
 		Description: description,
 		UserId: uId,
 		Date: cTime,
-	}
+	}, nil
 }

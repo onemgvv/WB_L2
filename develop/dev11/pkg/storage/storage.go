@@ -33,6 +33,19 @@ func (s *Storage) Get(id string) (*domain.Event, error) {
 	return nil, errors.New("event not found")
 }
 
+func (s *Storage) GetByUser(userId int) (events domain.Events) {
+	s.RLock()
+	defer s.RUnlock()
+
+	for _, v := range s.Data {
+		if v.UserId == userId {
+			events = append(events, *v)
+		}
+	}
+
+	return
+}
+
 func (s *Storage) Update(id string, calendar domain.Event) error {
 	data, err := s.Get(id)
 	if err != nil {

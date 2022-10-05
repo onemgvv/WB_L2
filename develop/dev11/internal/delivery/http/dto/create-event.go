@@ -1,11 +1,15 @@
 package dto
 
 import (
-	"log"
+	"errors"
 	"strconv"
 	"time"
 
 	"github.com/onemgvv/WB_L2/develop/dev11/internal/domain"
+)
+
+const (
+	LayoutISO = "2006-01-02"
 )
 
 type CreateEventDTO struct {
@@ -16,20 +20,20 @@ type CreateEventDTO struct {
 }
 
 func (u *CreateEventDTO) ToModel() *domain.Event {
-	return domain.NewEvent(u.Title, u.Description, u.UserId)
+	return domain.NewEvent(u.Title, u.Description, u.Date, u.UserId)
 }
 
-func ParseCreateEvDto(title, userId, description, date string) *CreateEventDTO {
+func ParseCreateEvDto(title, userId, description, date string) (*CreateEventDTO, error) {
+	var cTime time.Time
 	uId, err := strconv.Atoi(userId)
 	if err != nil {
-		log.Printf("%s.\n", err.Error())
-		return nil
+		return nil, errors.New("Id is not valid")
 	}
 
-	cTime, err := time.Parse("2006-01-02", date)
-	if err != nil {
-		log.Printf("%s.\n", err.Error())
-		return nil
+	cTime, _ = time.Parse(LayoutISO, date)
+
+	if title == "" || description == "" {
+		return nil, errors.New("not enough parameters")
 	}
 	
 	return &CreateEventDTO{
@@ -37,5 +41,5 @@ func ParseCreateEvDto(title, userId, description, date string) *CreateEventDTO {
 		Description: description,
 		UserId: uId,
 		Date: cTime,
-	}
+	}, nil
 }

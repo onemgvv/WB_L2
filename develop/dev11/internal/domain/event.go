@@ -1,9 +1,12 @@
 package domain
 
 import (
-	"github.com/onemgvv/WB_L2/develop/dev11/pkg/uuid"
 	"time"
+
+	"github.com/onemgvv/WB_L2/develop/dev11/pkg/uuid"
 )
+
+type Events []Event
 
 type Event struct {
 	Id          string    `json:"id"`
@@ -13,9 +16,11 @@ type Event struct {
 	Date        time.Time `json:"date"`
 }
 
-func NewEvent(title, description string, userId int) *Event {
+func NewEvent(title, description string, date time.Time, userId int) *Event {
 	uid := uuid.V4()
-	now := time.Now()
+	if date.IsZero() {
+		date = time.Now()
+	}
 
-	return &Event{uid, title, description, userId, now}
+	return &Event{uid, title, description, userId, date}
 }
